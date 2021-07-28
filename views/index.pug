@@ -1,0 +1,386 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC' crossorigin='anonymous')
+  link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css')
+  link(rel='stylesheet' type='text/css' href='./newstyle.css')
+  // <script defer src="gvalidation.js"></script>
+  title Travel Experts Site
+// *** BODY ***
+// Navigation Bar
+
+nav.navbar.navbar-expand-lg.bg-info.navbar-light.py-4.mb-0.fixed-top
+  .container
+    a.navbar-brand(href='#')
+      img(src='images/TELogo2.gif' width='300' height='75' alt='')
+    h2.text-center.text-white #{tcGreetings}
+    button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#temenu')
+      span.navbar-toggler-icon
+    #temenu.collapse.navbar-collapse
+      ul.navbar-nav.ms-auto
+        li.nav-item
+          a.nav-link.mt-2(href='#agents') Our Agents
+        li.nav-item
+          a.nav-link.mt-2(href='#contactus') Contact Us
+        li.nav-item
+          a.nav-link.mt-2(href='register') Create an account
+        li.nav-item
+          a.nav-link.mt-2(href='login') Login
+        li.nav-item
+          a.nav-link.mt-2(href='about') About
+// Picture Carousel
+section#carousel.bg-info.mt-0
+  #TECarousel.carousel.slide.carousel-fade.bg-info(data-bs-ride='carousel')
+    .carousel-indicators
+      button.active(type='button' data-bs-target='#TECarousel' data-bs-slide-to='0' aria-current='true' aria-label='Slide 1')
+      button(type='button' data-bs-target='#TECarousel' data-bs-slide-to='1' aria-label='Slide 2')
+      button(type='button' data-bs-target='#TECarousel' data-bs-slide-to='2' aria-label='Slide 3')
+      button(type='button' data-bs-target='#TECarousel' data-bs-slide-to='3' aria-label='Slide 4')
+      button(type='button' data-bs-target='#TECarousel' data-bs-slide-to='4' aria-label='Slide 5')
+      button(type='button' data-bs-target='#TECarousel' data-bs-slide-to='5' aria-label='Slide 6')
+    .carousel-inner
+      .carousel-item.bg-info.active(data-interval='50')
+        .container-fluid
+          img.d-block.w-100(src='images/andorra.jpg' alt='...')
+          .carousel-caption.d-none.d-md-block
+            h5 The intriguing Adriatic!
+            p
+              | Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse, quo qui ratione id dolor
+              | error.
+      .carousel-item.bg-info(data-interval='50')
+        .container-fluid
+          img.d-block.w-100(src='images/bora-bora.jpg' alt='...')
+          .carousel-caption.d-none.d-md-block
+            h5 Southeast Asia
+            p
+              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo non maxime quas
+              | voluptas iusto autem ab neque deserunt fuga nesciunt! Pariatur cum omnis veniam,
+              | voluptatem quod repellendus tenetur vel rem?
+      .carousel-item.bg-info(data-interval='50')
+        .container-fluid
+          img.d-block.w-100(src='images/corinth.jpg' alt='...')
+          .carousel-caption.d-none.d-md-block
+            h5 Visit Turkey
+            p
+              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione eum sequi unde.
+              | Est officiis error dolorem beatae aspernatur nobis aut deserunt sequi inventore,
+              | voluptatibus eligendi.
+      .carousel-item.bg-info(data-interval='50')
+        .container-fluid
+          img.d-block.w-100(src='images/ireland.jpg' alt='...')
+          .carousel-caption.d-none.d-md-block
+            h5 Visit Ireland
+            p
+              | Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              | Eveniet harum totam reiciendis minus facere ex laudantium modi. Maxime, quam alias..
+      .carousel-item.bg-info(data-interval='50')
+        .container-fluid
+          img.d-block.w-100(src='images/newyork.jpg' alt='...')
+          .carousel-caption.d-none.d-md-block
+            h5 New York, New York 
+            p
+              | Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              | Eveniet harum totam reiciendis minus facere ex laudantium modi. Maxime, quam alias..
+      .carousel-item.bg-info(data-interval='50')
+        .container-fluid
+          img.d-block.w-100(src='images/colorado10.jpg' alt='...')
+          .carousel-caption.d-none.d-md-block
+            h5 Climb to the top of the world ...
+            p
+              | Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              | Eveniet harum totam reiciendis minus facere ex laudantium modi. Maxime, quam alias..
+    button.carousel-control-prev(type='button' data-bs-target='#TECarousel' data-bs-slide='prev')
+      span.carousel-control-prev-icon(aria-hidden='true')
+      span.visually-hidden Previous
+    button.carousel-control-next(type='button' data-bs-target='#TECarousel' data-bs-slide='next')
+      span.carousel-control-next-icon(aria-hidden='true')
+      span.visually-hidden Next
+// *** Agents ****
+section#agents.p-5.bg-info
+  .container
+    h2.text-center.text-white Our Agents
+    p.lead.text-center.text.white.mb-5
+      | Our Senior Travel Agents are ready to help you reach
+      br
+      |                 your next dream destination. Make your appointment today!
+    .row.g-4
+      .col-md-6.col-lg-3
+        .card.bg-light
+          .card-body.text-center
+            img.square(src='https://randomuser.me/api/portraits/women/25.jpg' mb-3='' alt='')
+            h4.card-title.mb-3.mr-2 Catherine Hughes
+            p.card-text
+              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia,
+              | excepturi
+              | eveniet esse quod explicabo magni!
+            a(href='#')
+              i.bi.bi-twitter.text-dark.mx-1
+            a(href='#')
+              i.bi.bi-facebook.text-dark.mx-1
+            a(href='#')
+              i.bi.bi-linkedin.text-dark.mx-1
+            a(href='#')
+              i.bi.bi-instagram.text-dark.mx-1
+            a(href='#')
+              i.bi.bi-telephone.text-dark.mx-1
+            p
+      .col-md-6.col-lg-3
+        .card.bg-light
+          .card-body.text-center
+            img.square(src='https://randomuser.me/api/portraits/men/25.jpg' mb-3='' alt='')
+            h4.card-title.mb-3 Paul Mason
+            p.card-text
+              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia,
+              | excepturi
+              | eveniet esse quod explicabo magni!
+            a(href='#')
+              i.bi.bi-twitter.text-dark.mx-1
+            a(href='#')
+              i.bi.bi-facebook.text-dark.mx-1
+            a(href='#')
+              i.bi.bi-linkedin.text-dark.mx-1
+            a(href='#')
+              i.bi.bi-instagram.text-dark.mx-1
+            a(href='#')
+              i.bi.bi-telephone.text-dark.mx-1
+            p
+      .col-md-6.col-lg-3
+        .card.bg-light
+          .card-body.text-center
+            img.square(src='https://randomuser.me/api/portraits/men/28.jpg' mb-3='' alt='')
+            h4.card-title.mb-3 Doug Soko
+            p.card-text
+              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia,
+              | excepturi
+              | eveniet esse quod explicabo magni!
+            a(href='#')
+              i.bi.bi-twitter.text-dark.mx-1
+            a(href='#')
+              i.bi.bi-facebook.text-dark.mx-1
+            a(href='#')
+              i.bi.bi-linkedin.text-dark.mx-1
+            a(href='#')
+              i.bi.bi-instagram.text-dark.mx-1
+            a(href='#')
+              i.bi.bi-telephone.text-dark.mx-1
+            p
+      .col-md-6.col-lg-3
+        .card.bg-light
+          .card-body.text-center
+            img.square(src='https://randomuser.me/api/portraits/women/27.jpg' mb-3='' alt='')
+            h4.card-title.mb-3 Sandra Jones
+            p.card-text
+              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia,
+              | excepturi
+              | eveniet esse quod explicabo magni!
+            a(href='#')
+              i.bi.bi-twitter.text-dark.mx-1
+            a(href='#')
+              i.bi.bi-facebook.text-dark.mx-1
+            a(href='#')
+              i.bi.bi-linkedin.text-dark.mx-1
+            a(href='#')
+              i.bi.bi-instagram.text-dark.mx-1
+            a(href='#')
+              i.bi.bi-telephone.text-dark.mx-1
+            p
+// *** Contact Us ***
+secion#contactus.bg-info
+  .container
+    .row.g-4
+      .col-md
+        h2.text-center.mb-4 Contact Us
+        ul.list-group.list-group-flush.lead
+          li.list-group-item
+            span.fw-bold Main Location:
+            |                             321 Centre Street SW Calgary AB
+          li.list-group-item
+            span.fw-bold Website:
+            |                             www.travelexperts_ca.com
+          li.list-group-item
+            span.fw-bold Main:
+            |                             (403)-111-2233
+// Footer
+footer.p-5.bg-info.text-dark.text-center.position-relative
+
+  .container
+    p.lead Copyright &copy; 2021 Travel Experts - SAIT
+    a.position-absolute.bottom-0.end-0.p-5(href='#')
+      i.bi.bi-arrow-up-circle.h1
+// Modal for Registration Form
+#register.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
+  .modal-dialog
+    .modal-content
+      .modal-header.bg-info
+        h5#registerModalLabel.modal-title
+          | Create an account
+          span.text-danger
+            h6 ... all fields are required!
+        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body
+        // Registration Form
+        form(name='regForm')
+          .col-ld-4.mb-2
+            label.col-form-label(for='firstname') Your First Name:
+            input#firstname.form-control(type='text' name='firstname' placeholder='Please, enter you first name' required='')
+            #firstnameValidation.invalid-tooltip
+            | Your first name is required
+          .col-ld-4.mb-2
+            label.col-form-label(for='lastname') Last Name:
+            input#lastname.form-control(type='text' name='lastname' placeholder='... and your last name' required='')
+            #lastnameValidation.invalid-tooltip
+              | Your last name is required
+          .col-ld-4.mb-2
+            label.col-form-label(for='phone') Phone#
+            input#phone.form-control(type='text' name='phone' placeholder='(***) ***-****' required='')
+            #phoneValidation.invalid-tooltip
+              | Your telephone number is required
+          .col-ld-4.mb-2
+            label.col-form-label(for='r_email') User ID (Email)
+            input#r_email.form-control(type='text' name='r_email' placeholder='john_smith@somwhere.com' required='')
+            #emailValidation.invalid-tooltip
+              | Your email is required
+          // Password
+          .col-ld-4.mb-2
+            label.col-form-label(for='r_password') Password
+            input#r_password.form-control(type='password' name='r_password' placeholder='Provide a password ...' required='')
+            #passwordValidation.invalid-tooltip
+              | Password is required
+          // Confirm Password
+          .col-ld-4.mb-2
+            label.col-form-label(for='r_cpassword') Confirm Password
+            input#r_cpassword.form-control(type='password' name='r_cpassword' placeholder='Please, confirm your password ...' required='')
+            #cpasswordValidation.invalid-tooltip
+              | Confirmation of password is required
+          .col-12
+            button.btn.btn-outline-primary(type='submit' onclick='return checkFields(this.form);') Register
+            // <button class="btn btn-outline-primary" type="submit">Register</button>
+            button.btn.btn-outline-secondary(type='reset') Clear
+            button.btn.btn-outline-danger(type='button' data-bs-dismiss='modal') Close
+// Modal for Login Form
+#login.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h5#registerModalLabel.modal-title Please login ... 
+        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body
+        // Login Form
+        form(name='loginForm')
+          .col-ld-4.mb-2
+            label.col-form-label(for='l_email')
+            input#l_email.form-control(type='text' name='l_email' placeholder='Please enter you email / userID' required='')
+            #emailValidation.invalid-tooltip
+              | Your email is required
+          // Password
+          .col-md-4.mb-2
+            label.col-form-label(for='l_password')
+            input#l_password.form-control(type='password' name='l_password' placeholder='Password ...' required='')
+            #passwordValidation.invalid-tooltip
+              | Your password is required ...
+          .col-12
+            button.btn.btn-outline-primary(type='submit') Login
+            // onClick="return checkFields(this.form);">Register</button>
+            button.btn.btn-outline-danger(type='button' data-bs-dismiss='modal') Close
+script(src='http://code.jquery.com/jquery-1.11.0.min.js')
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM' crossorigin='anonymous')
+script.
+  // Validation function for the registration form.
+  function checkFields(regForm) {
+  let userPassword = document.getElementByName("r_password").value;
+  let userCPassword = document.getElementByName("r_cpassword").value;
+  let firstName = document.getElementByName("firstname").value;
+  let lastName = document.getElementByName("lastname").value;
+  let phone = document.getElementByName("phone").value;
+  let userId = document.getElementByName("r_email").value;
+  let submitForm = false;
+  let passwordMatch = 0;
+  let validEmail = 0;
+  let validPhone = 0;
+  let allFieldsAreFilled = 0;
+  let validPhoneExpression = /^[+]?(1\\-|1\s|1|\d{3}\-|\d{3}\s|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/g;
+  let validEmailExpression = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\\.)+[A-Z]{2,4}$/i;
+
+//  let validEmailExpression = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\\.)+[A-Z]{2,4}$/i;
+
+  //-  let validEmailExpression = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\\.)+[A-Z]{2,4}$/i;
+  //let validEmailExpression = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9-]+$/i;
+  // Trim fields content of white spaces
+  userPassword = userPassword.replace(/ /g, '');
+  userCPassword = userCPassword.replace(/ /g, '');
+  firstName = firstName.replace(/ /g, '');
+  lastName = lastName.replace(/ /g, '');
+  phone = phone.replace(/ /g, '');
+  userId = userId.replace(/ /g, '');
+  // Check all trimmed fields are filled and add score for each
+  if (userPassword.length > 0) { allFieldsAreFilled = allFieldsAreFilled + 10; }
+  if (userCPassword.length > 0) { allFieldsAreFilled = allFieldsAreFilled + 10; }
+  if (firstName.length > 0) { allFieldsAreFilled = allFieldsAreFilled + 10; }
+  if (lastName.length > 0) { allFieldsAreFilled = allFieldsAreFilled + 10; }
+  if (phone.length > 0) { allFieldsAreFilled = allFieldsAreFilled + 10; }
+  if (userId.length > 0) { allFieldsAreFilled = allFieldsAreFilled + 10; }
+  // If both passwords are filled and equal, score 1 point
+  if ((userPassword == userCPassword) &&
+  (userPassword.length > 0 && userCPassword.length > 0)) {
+  passwordMatch = 1;
+  }
+  // Check for valid phone nubmber.  If valid, score 2 points.
+  if (validPhoneExpression.test(String(phone))) { validPhone = 2; }
+  // Email is userId, check for valid email address.  If valid, score 3 points
+  if (validEmailExpression.test(String(userId))) { validEmail = 4; }
+  let totalScore = allFieldsAreFilled + passwordMatch + validPhone + validEmail;
+  alert('Total score: ' + totalScore);
+  // Decide action and message to user
+  switch (totalScore) {
+  // Total score = 67 it passes all validation
+  case 67:
+  alert("Thank you for registering with Travel Experts!");
+  submitForm = true;
+  break;
+  case 66:
+  alert("Passwords do not match!");
+  submitForm = false;
+  break;
+  case 65:
+  alert("Enter a valid phone number!");
+  submitForm = false;
+  break;
+  case 64:
+  alert("Passwords do not match, and phone number is not valid!");
+  submitForm = false;
+  break;
+  case 63:
+  alert("Enter a valid Email address!");
+  submitForm = false;
+  break;
+  case 62:
+  alert("Passwords do not match, and email address is not valid!");
+  submitForm = false;
+  break;
+  case 61:
+  alert("Phone number and email address are not valid!");
+  submitForm = false;
+  break;
+  case 60:
+  alert("All fields are filled, but the information is not valid");
+  submitForm = false;
+  break;
+  default:
+  alert("Oops!  We couldn't process your form.  Make sure all fields are filled.");
+  submitForm = false;
+  }
+  if (submitForm) {
+  regForm.classList.add('was-validated');
+  event.isTrusted;
+  event.returnValue;
+  return true;
+  }
+  else {
+  event.preventDefault();
+  even.stopPropagation();
+  regForm.reload();
+  return false;
+  }
+  }
