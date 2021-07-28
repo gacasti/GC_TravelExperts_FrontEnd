@@ -15,7 +15,7 @@ router.post('/', function (req, res, next) {
     cust.lastname = req.body.lastname;
     cust.phone = req.body.phone;
     cust.email = req.body.email;
-    cust.password = req.body.rpassword;
+    cust.password = req.body.password;
     cust.save((err) => {
         // if(err) throw err;
         if (err) {
@@ -23,7 +23,8 @@ router.post('/', function (req, res, next) {
             const errorKeys = Object.keys(err.errors);
             errorKeys.forEach((key) => errorArray.push(err.errors[key].message));
             return res.render("register", {
-                errors: errorArray
+                postdata: req.body,
+                errors: errorArray,
             });
         }
         console.log(req.body);

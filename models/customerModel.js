@@ -32,17 +32,17 @@ const customerSchema = new mongoose.Schema({
         required: "Please enter your last name.",
         trim: true
     },
-    laststname: {
+    lastname: {
         type: String,
         required: "Please enter your last name.",
         trim: true
     },
-    remail: {
+    email: {
         type: String,
         trim: true,
         validate: {
             validator: function (v) {
-                return /^[A-Z0-9._%+-]+@([A-Z0-9-]+\\.)+[A-Z]{2,4}$/i.test(v);
+                return /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/.test(v);
             },
             message: props => `${props.value} is not a valid email address`
         },
@@ -59,7 +59,7 @@ const customerSchema = new mongoose.Schema({
         },
         required: 'Please enter your phone number'
     },
-    rpassword: {
+    password: {
         type: String,
         required: "Please enter a password",
         trim: true,

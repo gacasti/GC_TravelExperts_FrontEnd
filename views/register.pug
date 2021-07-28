@@ -2,29 +2,33 @@ extends layout
 
 block content
   h1= title
-  h5.text-left.text-black Create an account ...
-  p #{title}
+  p
     // Registration Form
     form(method='POST' action='/register')
         .form-floating.m-2
-            input#firstname.form-control(type='text' placeholder='First Name' name='firstname')
+            input#firstname.form-control(type='text' placeholder='First Name' name='firstname' 
+            value=postdata && postdata.firstname)
             label.form-label(for='firstname') First Name
 
         .form-floating.m-2
-            input#laststname.form-control(type='text' placeholder='Last Name' name='laststname')
-            label.form-label(for='laststname') Last Name
+            input#lastname.form-control(type='text' placeholder='Last Name' name='lastname' 
+            value=postdata && postdata.lastname)
+            label.form-label(for='lastname') Last Name
 
         .form-floating.m-2
-            input#remail.form-control(type='text' placeholder='Email' name='remail')
-            label.form-label(for='remail') Email
+            input#email.form-control(type='text' placeholder='Email' name='email' 
+            value=postdata && postdata.email)
+            label.form-label(for='email') Email
 
         .form-floating.m-2
-            input#phone.form-control(type='text' placeholder='Telephone' name='phone')
+            input#phone.form-control(type='text' placeholder='Telephone' name='phone' 
+            value=postdata && postdata.phone)
             label.form-label(for='phone') Telephone
 
         .form-floating.m-2
-            input#rpassword.form-control(type='password' placeholder='Password' name='rpassword')
-            label.form-label(for='rpassword') Password 
+            input#password.form-control(type='password' placeholder='Password' name='password' 
+            value=postdata && postdata.password)
+            label.form-label(for='password') Password 
  
         .col-12
         button.btn.btn-outline-primary(type='submit') Register
@@ -32,4 +36,7 @@ block content
         button.btn.btn-outline-secondary(type='reset') Clear
         <a href="/" class="btn btn-outline-danger" role="button">Close</a>
 
-    
+    .container
+      if errors    
+        each error in errors
+            p.alert.alert-danger= error
