@@ -8,7 +8,7 @@ router.get('/', function (req, res, next) {
 });
 
 // To create a new customer (Registration)
-router.post('/register', function (req, res, next) {
+router.post('/', function (req, res, next) {
     // const post = new Post(req.body);
     const cust = new Customer();
     cust.firstname = req.body.firstname;
@@ -26,7 +26,7 @@ router.post('/register', function (req, res, next) {
                 errors: errorArray
             });
         }
-        console.log(cust);
+        console.log(req.body);
         res.redirect("thankyou");
     });
 });
@@ -40,3 +40,4 @@ router.post('/register', function (req, res, next) {
 // });
 
 module.exports = router;
+
