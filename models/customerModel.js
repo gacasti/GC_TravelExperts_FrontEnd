@@ -1,29 +1,5 @@
 // Require the mongoose module
 const mongoose = require('mongoose');
-
-// var connLocal = 'mongodb://localhost:27017/blog';
-// var connAtlas = "mongodb+srv://gacasti:1234321@cluster0.jg6vs.mongodb.net/custTest?retryWrites=true&w=majority";
-
-// mongoose.connect(process.env.MONGO_ATLAS_URL || process.env.MONGO_COMPASS_URL, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// });
-
-mongoose.connect(process.env.MONGO_ATLAS_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
-
-// Get the connection
-var db = mongoose.connection;
-
-// Bind connection to error event (to get notification of connection errors)
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-
-db.once('open', function () {
-    console.log("We're connected to the database ...!")
-});
-
 const uniqueValidator = require("mongoose-unique-validator");
 
 const customerSchema = new mongoose.Schema({

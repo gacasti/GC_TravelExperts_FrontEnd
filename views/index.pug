@@ -202,6 +202,33 @@ secion#contactus.bg-info
           li.list-group-item
             span.fw-bold Main:
             |                             (403)-111-2233
+    form(method='POST' action='/contactus/contactThem')
+        .form-floating.m-3      
+          input#fullname.form-control(type='text' placeholder='Please enter your full name' name='fullname' 
+          value=postdata && postdata.fullname)
+          label.form-label(for='fullname') Full Name
+        .form-floating.m-3 
+          input#email.form-control(type='text' placeholder='Please enter your email' name='email' 
+          value=postdata && postdata.email)
+          label.form-label(for='email') Email
+        .form-floating.m-3
+          input#phone.form-control(type='text' placeholder='Please enter your telephone' name='phone' 
+          value=postdata && postdata.phone)
+          label.form-label(for='phone') Phone
+        .form-floating.m-3
+          textarea#comments.form-control(placeholder='Leave a comment here' name='comments')= postdata && postdata.comments
+          label(for='comments') Your Comments
+        .col-12
+            button.btn.btn-outline-primary(type='submit') Send
+            // <button class="btn btn-outline-primary" type="submit">Register</button>
+            button.btn.btn-outline-secondary(type='reset') Clear
+            <a href="/" class="btn btn-outline-danger" role="button">Back to Top</a>
+
+        .container
+          if errors    
+            each error in errors
+                p.alert.alert-danger= error
+
 // Footer
 footer.p-5.bg-info.text-dark.text-center.position-relative
 
@@ -209,178 +236,6 @@ footer.p-5.bg-info.text-dark.text-center.position-relative
     p.lead Copyright &copy; 2021 Travel Experts - SAIT
     a.position-absolute.bottom-0.end-0.p-5(href='#')
       i.bi.bi-arrow-up-circle.h1
-// Modal for Registration Form
-#register.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
-  .modal-dialog
-    .modal-content
-      .modal-header.bg-info
-        h5#registerModalLabel.modal-title
-          | Create an account
-          span.text-danger
-            h6 ... all fields are required!
-        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
-      .modal-body
-        // Registration Form
-        form(name='regForm')
-          .col-ld-4.mb-2
-            label.col-form-label(for='firstname') Your First Name:
-            input#firstname.form-control(type='text' name='firstname' placeholder='Please, enter you first name' required='')
-            #firstnameValidation.invalid-tooltip
-            | Your first name is required
-          .col-ld-4.mb-2
-            label.col-form-label(for='lastname') Last Name:
-            input#lastname.form-control(type='text' name='lastname' placeholder='... and your last name' required='')
-            #lastnameValidation.invalid-tooltip
-              | Your last name is required
-          .col-ld-4.mb-2
-            label.col-form-label(for='phone') Phone#
-            input#phone.form-control(type='text' name='phone' placeholder='(***) ***-****' required='')
-            #phoneValidation.invalid-tooltip
-              | Your telephone number is required
-          .col-ld-4.mb-2
-            label.col-form-label(for='r_email') User ID (Email)
-            input#r_email.form-control(type='text' name='r_email' placeholder='john_smith@somwhere.com' required='')
-            #emailValidation.invalid-tooltip
-              | Your email is required
-          // Password
-          .col-ld-4.mb-2
-            label.col-form-label(for='r_password') Password
-            input#r_password.form-control(type='password' name='r_password' placeholder='Provide a password ...' required='')
-            #passwordValidation.invalid-tooltip
-              | Password is required
-          // Confirm Password
-          .col-ld-4.mb-2
-            label.col-form-label(for='r_cpassword') Confirm Password
-            input#r_cpassword.form-control(type='password' name='r_cpassword' placeholder='Please, confirm your password ...' required='')
-            #cpasswordValidation.invalid-tooltip
-              | Confirmation of password is required
-          .col-12
-            button.btn.btn-outline-primary(type='submit' onclick='return checkFields(this.form);') Register
-            // <button class="btn btn-outline-primary" type="submit">Register</button>
-            button.btn.btn-outline-secondary(type='reset') Clear
-            button.btn.btn-outline-danger(type='button' data-bs-dismiss='modal') Close
-// Modal for Login Form
-#login.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
-  .modal-dialog
-    .modal-content
-      .modal-header
-        h5#registerModalLabel.modal-title Please login ... 
-        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
-      .modal-body
-        // Login Form
-        form(name='loginForm')
-          .col-ld-4.mb-2
-            label.col-form-label(for='l_email')
-            input#l_email.form-control(type='text' name='l_email' placeholder='Please enter you email / userID' required='')
-            #emailValidation.invalid-tooltip
-              | Your email is required
-          // Password
-          .col-md-4.mb-2
-            label.col-form-label(for='l_password')
-            input#l_password.form-control(type='password' name='l_password' placeholder='Password ...' required='')
-            #passwordValidation.invalid-tooltip
-              | Your password is required ...
-          .col-12
-            button.btn.btn-outline-primary(type='submit') Login
-            // onClick="return checkFields(this.form);">Register</button>
-            button.btn.btn-outline-danger(type='button' data-bs-dismiss='modal') Close
+
 script(src='http://code.jquery.com/jquery-1.11.0.min.js')
 script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM' crossorigin='anonymous')
-script.
-  // Validation function for the registration form.
-  function checkFields(regForm) {
-  let userPassword = document.getElementByName("r_password").value;
-  let userCPassword = document.getElementByName("r_cpassword").value;
-  let firstName = document.getElementByName("firstname").value;
-  let lastName = document.getElementByName("lastname").value;
-  let phone = document.getElementByName("phone").value;
-  let userId = document.getElementByName("r_email").value;
-  let submitForm = false;
-  let passwordMatch = 0;
-  let validEmail = 0;
-  let validPhone = 0;
-  let allFieldsAreFilled = 0;
-  let validPhoneExpression = /^[+]?(1\\-|1\s|1|\d{3}\-|\d{3}\s|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/g;
-  let validEmailExpression = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\\.)+[A-Z]{2,4}$/i;
-
-//  let validEmailExpression = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\\.)+[A-Z]{2,4}$/i;
-
-  //-  let validEmailExpression = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\\.)+[A-Z]{2,4}$/i;
-  //let validEmailExpression = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9-]+$/i;
-  // Trim fields content of white spaces
-  userPassword = userPassword.replace(/ /g, '');
-  userCPassword = userCPassword.replace(/ /g, '');
-  firstName = firstName.replace(/ /g, '');
-  lastName = lastName.replace(/ /g, '');
-  phone = phone.replace(/ /g, '');
-  userId = userId.replace(/ /g, '');
-  // Check all trimmed fields are filled and add score for each
-  if (userPassword.length > 0) { allFieldsAreFilled = allFieldsAreFilled + 10; }
-  if (userCPassword.length > 0) { allFieldsAreFilled = allFieldsAreFilled + 10; }
-  if (firstName.length > 0) { allFieldsAreFilled = allFieldsAreFilled + 10; }
-  if (lastName.length > 0) { allFieldsAreFilled = allFieldsAreFilled + 10; }
-  if (phone.length > 0) { allFieldsAreFilled = allFieldsAreFilled + 10; }
-  if (userId.length > 0) { allFieldsAreFilled = allFieldsAreFilled + 10; }
-  // If both passwords are filled and equal, score 1 point
-  if ((userPassword == userCPassword) &&
-  (userPassword.length > 0 && userCPassword.length > 0)) {
-  passwordMatch = 1;
-  }
-  // Check for valid phone nubmber.  If valid, score 2 points.
-  if (validPhoneExpression.test(String(phone))) { validPhone = 2; }
-  // Email is userId, check for valid email address.  If valid, score 3 points
-  if (validEmailExpression.test(String(userId))) { validEmail = 4; }
-  let totalScore = allFieldsAreFilled + passwordMatch + validPhone + validEmail;
-  alert('Total score: ' + totalScore);
-  // Decide action and message to user
-  switch (totalScore) {
-  // Total score = 67 it passes all validation
-  case 67:
-  alert("Thank you for registering with Travel Experts!");
-  submitForm = true;
-  break;
-  case 66:
-  alert("Passwords do not match!");
-  submitForm = false;
-  break;
-  case 65:
-  alert("Enter a valid phone number!");
-  submitForm = false;
-  break;
-  case 64:
-  alert("Passwords do not match, and phone number is not valid!");
-  submitForm = false;
-  break;
-  case 63:
-  alert("Enter a valid Email address!");
-  submitForm = false;
-  break;
-  case 62:
-  alert("Passwords do not match, and email address is not valid!");
-  submitForm = false;
-  break;
-  case 61:
-  alert("Phone number and email address are not valid!");
-  submitForm = false;
-  break;
-  case 60:
-  alert("All fields are filled, but the information is not valid");
-  submitForm = false;
-  break;
-  default:
-  alert("Oops!  We couldn't process your form.  Make sure all fields are filled.");
-  submitForm = false;
-  }
-  if (submitForm) {
-  regForm.classList.add('was-validated');
-  event.isTrusted;
-  event.returnValue;
-  return true;
-  }
-  else {
-  event.preventDefault();
-  even.stopPropagation();
-  regForm.reload();
-  return false;
-  }
-  }

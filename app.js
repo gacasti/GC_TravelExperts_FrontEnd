@@ -10,6 +10,7 @@ var aboutRouter = require('./routes/about');
 var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
 var thankyouRouter = require('./routes/thankyou');
+var contactusRouter = require('./routes/contactus');
 
 const mongoSanitize = require("express-mongo-sanitize");
 
@@ -18,22 +19,6 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
-// // the register page
-// app.get('/register', (req, res) => {
-//   res.render('register')
-// })
-
-// // the Login page
-// app.get('/login', (req, res) => {
-//   res.render('login')
-// })
-
-// // the about page
-// app.get('/about', (req, res) => {
-//   res.render('about')
-// })
-
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -47,6 +32,7 @@ app.use('/about', aboutRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/thankyou', thankyouRouter);
+app.use('/contactus', contactusRouter);
 
 // to replace prohibited characters with _, use:
 app.use(
@@ -54,6 +40,52 @@ app.use(
     replaceWith: "_",
   })
 );
+
+
+// -------------------------------------------------------------
+// Configure the DB connection using Mongoose
+var mongoose = require("mongoose");
+
+// Set up a mongoose connection
+mongoose.connect(process.env.MONGO_ATLAS_URL || process.env.MONGO_COMPASS_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+// Get the connection
+var db = mongoose.connection;
+
+// Bind connection to error event (to get notification of connection errors)
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
+
+db.once("open", function () {
+  console.log(`we are connected to the ${db.name} database ...`);
+});
+
+
+
+
+
+// -------------------------------------------------------------
+// For Passport.js
+require("./my-passport").init(app);
+// -------------------------------------------------------------
+//  Put the messages in the res.locals
+app.use((req, res, next) => {
+  res.locals.message = req.session.msg; // Read the message from the session variable
+  req.session.msg = null;
+  next();
+});
+// -------------------------------------------------------------
+// Proxy the dash request to the Python server
+app.all(/(data|_dash|_reload)\S*/, require("./routes/data-proxy"));
+
+// -------------------------------------------------------------
+// app.use("/", indexRouter);
+// app.use("/users", usersRouter);
+// app.use("/post", postRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
