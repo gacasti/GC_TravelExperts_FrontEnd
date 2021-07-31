@@ -7,15 +7,15 @@ nav.navbar.navbar-expand-lg.bg-info.navbar-light.py-4.mb-0.fixed-top
           #temenu.collapse.navbar-collapse
             ul.navbar-nav.ms-auto
               li.nav-item
-                a.nav-link.mt-2.text-lg(href='register') Create an Account
+                a.nav-link.mt-2.text-lg(href='register') Registrese
               li.nav-item
-                a.nav-link.mt-2(href='contactus') Contact Us
+                a.nav-link.mt-2(href='contactus') Contactenos
               if currentUser
                 li.nav-item
-                a.nav-link.mt-2(href="/log-out") Log Out
+                a.nav-link.mt-2(href="/log-out") Salga
               else
                 li.nav-item
-                a.nav-link.mt-2(href='login') Log In
+                a.nav-link.mt-2(href='login') Entre al Sistema
               if currentUser && currentUser.role == "manager"
                 li.nav-item
                 a.nav-link(href='/data') Performance Data

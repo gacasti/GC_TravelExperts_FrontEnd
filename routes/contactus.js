@@ -30,7 +30,7 @@ router.post('/', function (req, res, next) {
             });
         }
         console.log(result);
-        const headermessage = `Thank you for contacting us ${result.firstname}`;
+        const headermessage = `Thank you for contacting us ${result.fullname}`;
         res.redirect("/thankyou?headermessage=" + headermessage);
     });
 });
