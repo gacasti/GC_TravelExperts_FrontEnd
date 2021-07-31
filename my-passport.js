@@ -10,7 +10,7 @@ const LocalStrategy = require("passport-local").Strategy;
 module.exports.init = function (app) {
     app.use(
         require("express-session")({
-            secret: 'adfaafjalkdiweruiwerwieu',
+            secret: "sdflkjs;fiouer089fguerpgjpofxd",
             resave: true,
             saveUninitialized: true,
         })
@@ -57,9 +57,10 @@ module.exports.init = function (app) {
     // Login Endpoint, recieves the user login from a login form
     app.post(
         "/login-user",
-        passport.authenticate("local", { failureRedirect: "/login" }),
+        passport.authenticate("local", { failureRedirect: "/login?failedToLogin=failed" }),
         function (req, res) {
-            console.log("Authenticated");
+            console.log(`Authenticated as: ${req.user?.username} - ${req.user?.role}`);
+            res.locals.currentUser = req.user?.username;
             res.locals.loggedInAs = `Logged-in as ${req.user?.username}`;
             const headermessage = `Welcome ${req.user?.username}`;
             res.redirect("/?headermessage=" + headermessage);

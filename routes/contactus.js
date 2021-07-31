@@ -2,42 +2,52 @@ var express = require('express');
 var router = express.Router();
 const ConctactUs = require('../models/contactusModel').ConctactUs;
 
+const pageRegister = {
+    pagetitle: "Contact Us",
+    pageheading: "Send us your comments",
+    pagemessage: "Please, fill all fields.  Thank you",
+    hideLogin: true,
+};
+
 /* GET Register page. */
-// router.get('/', function (req, res, next) {
-//     res.render('register', { title: 'Register' });
-// });
+router.get('/', function (req, res, next) {
+    res.render('contactus', { title: pageRegister.pagetitle });
+});
 
 // To send us a contactus
-router.post('/contactThem', function (req, res, next) {
+router.post('/', function (req, res, next) {
     // const post = new Post(req.body);
     const contact = new ConctactUs();
     contact.fullname = req.body.fullname;
     contact.phone = req.body.phone;
     contact.email = req.body.email;
     contact.comments = req.body.comments;
-    contact.save((err) => {
-        // if(err) throw err;
+    contact.save((err, result) => {
         if (err) {
-            const errorArray = [];
-            const errorKeys = Object.keys(err.errors);
-            errorKeys.forEach((key) => errorArray.push(err.errors[key].message));
-            return res.render("index", {
-                postdata: req.body,
-                errors: errorArray,
+            return processErrors(err, req, res);
+            res.redirect('register', {
+                errors: err
             });
         }
-        console.log(req.body);
-        res.redirect("/thankyou");
+        console.log(result);
+        const headermessage = `Thank you for contacting us ${result.firstname}`;
+        res.redirect("/thankyou?headermessage=" + headermessage);
     });
 });
 
-// Shows a single registration
-// router.get('/:custLastName', function (req, res, next) {
-//     const customerLastName = req.params.custLastNme;
-//     Customer.findOne({ lastname: customerLastName }, (err, post) => {
-//         res.render('customer-register', { customerRegistration: post });
-//     });
-// });
+
+function processErrors(errs, req, res) {
+    // If there are errors from the Model schema
+    const errorArray = [];
+    const errorKeys = Object.keys(errs.errors);
+    errorKeys.forEach((key) => errorArray.push(errs.errors[key].message));
+    return res.render("contactus", {
+        postdata: req.body,
+        ...pageRegister,
+        errors: errorArray,
+        ...req.body,
+    });
+}
+
 
 module.exports = router;
-

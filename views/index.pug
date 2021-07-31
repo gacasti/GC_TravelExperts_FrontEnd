@@ -1,245 +1,159 @@
-doctype html
-head
-  meta(charset='UTF-8')
-  meta(http-equiv='X-UA-Compatible' content='IE=edge')
-  meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC' crossorigin='anonymous')
-  link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css')
-  link(rel='stylesheet' type='text/css' href='./newstyle.css')
-  // <script defer src="gvalidation.js"></script>
-  title Travel Experts Site
-// *** BODY ***
-// Navigation Bar
+extends layout
 
-nav.navbar.navbar-expand-lg.bg-info.navbar-light.py-4.mb-0.fixed-top
-  .container
-    a.navbar-brand(href='#')
-      img(src='images/TELogo2.gif' width='300' height='75' alt='')
-    h2.text-center.text-white #{currentUser}
-    p #{loggedInAs}
-    button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#temenu')
-      span.navbar-toggler-icon
-    #temenu.collapse.navbar-collapse
-      ul.navbar-nav.ms-auto
-        li.nav-item
-          a.nav-link.mt-2(href='#agents') Our Agents
-        li.nav-item
-          a.nav-link.mt-2(href='#contactus') Contact Us
-        li.nav-item
-          a.nav-link.mt-2(href='register') Create an account
-        li.nav-item
-          if currentUser 
-            a.nav-link.mt-2(href='/log-out') Log-Out
-          else
-            a.nav-link.mt-2(href='login') Log-In
-        li.nav-item
-          a.nav-link.mt-2(href='about') About
-// Picture Carousel
-section#carousel.bg-info.mt-0
-  #TECarousel.carousel.slide.carousel-fade.bg-info(data-bs-ride='carousel')
-    .carousel-indicators
-      button.active(type='button' data-bs-target='#TECarousel' data-bs-slide-to='0' aria-current='true' aria-label='Slide 1')
-      button(type='button' data-bs-target='#TECarousel' data-bs-slide-to='1' aria-label='Slide 2')
-      button(type='button' data-bs-target='#TECarousel' data-bs-slide-to='2' aria-label='Slide 3')
-      button(type='button' data-bs-target='#TECarousel' data-bs-slide-to='3' aria-label='Slide 4')
-      button(type='button' data-bs-target='#TECarousel' data-bs-slide-to='4' aria-label='Slide 5')
-      button(type='button' data-bs-target='#TECarousel' data-bs-slide-to='5' aria-label='Slide 6')
-    .carousel-inner
-      .carousel-item.bg-info.active(data-interval='50')
-        .container-fluid
-          img.d-block.w-100(src='images/andorra.jpg' alt='...')
-          .carousel-caption.d-none.d-md-block
-            h5 The intriguing Adriatic!
-            p
-              | Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse, quo qui ratione id dolor
-              | error.
-      .carousel-item.bg-info(data-interval='50')
-        .container-fluid
-          img.d-block.w-100(src='images/bora-bora.jpg' alt='...')
-          .carousel-caption.d-none.d-md-block
-            h5 Southeast Asia
-            p
-              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo non maxime quas
-              | voluptas iusto autem ab neque deserunt fuga nesciunt! Pariatur cum omnis veniam,
-              | voluptatem quod repellendus tenetur vel rem?
-      .carousel-item.bg-info(data-interval='50')
-        .container-fluid
-          img.d-block.w-100(src='images/corinth.jpg' alt='...')
-          .carousel-caption.d-none.d-md-block
-            h5 Visit Turkey
-            p
-              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione eum sequi unde.
-              | Est officiis error dolorem beatae aspernatur nobis aut deserunt sequi inventore,
-              | voluptatibus eligendi.
-      .carousel-item.bg-info(data-interval='50')
-        .container-fluid
-          img.d-block.w-100(src='images/ireland.jpg' alt='...')
-          .carousel-caption.d-none.d-md-block
-            h5 Visit Ireland
-            p
-              | Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              | Eveniet harum totam reiciendis minus facere ex laudantium modi. Maxime, quam alias..
-      .carousel-item.bg-info(data-interval='50')
-        .container-fluid
-          img.d-block.w-100(src='images/newyork.jpg' alt='...')
-          .carousel-caption.d-none.d-md-block
-            h5 New York, New York 
-            p
-              | Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              | Eveniet harum totam reiciendis minus facere ex laudantium modi. Maxime, quam alias..
-      .carousel-item.bg-info(data-interval='50')
-        .container-fluid
-          img.d-block.w-100(src='images/colorado10.jpg' alt='...')
-          .carousel-caption.d-none.d-md-block
-            h5 Climb to the top of the world ...
-            p
-              | Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              | Eveniet harum totam reiciendis minus facere ex laudantium modi. Maxime, quam alias..
-    button.carousel-control-prev(type='button' data-bs-target='#TECarousel' data-bs-slide='prev')
-      span.carousel-control-prev-icon(aria-hidden='true')
-      span.visually-hidden Previous
-    button.carousel-control-next(type='button' data-bs-target='#TECarousel' data-bs-slide='next')
-      span.carousel-control-next-icon(aria-hidden='true')
-      span.visually-hidden Next
-// *** Agents ****
-section#agents.p-5.bg-info
-  .container
-    h2.text-center.text-white Our Agents
-    p.lead.text-center.text.white.mb-5
-      | Our Senior Travel Agents are ready to help you reach
-      br
-      |                 your next dream destination. Make your appointment today!
-    .row.g-4
-      .col-md-6.col-lg-3
-        .card.bg-light
-          .card-body.text-center
-            img.square(src='https://randomuser.me/api/portraits/women/25.jpg' mb-3='' alt='')
-            h4.card-title.mb-3.mr-2 Catherine Hughes
-            p.card-text
-              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia,
-              | excepturi
-              | eveniet esse quod explicabo magni!
-            a(href='#')
-              i.bi.bi-twitter.text-dark.mx-1
-            a(href='#')
-              i.bi.bi-facebook.text-dark.mx-1
-            a(href='#')
-              i.bi.bi-linkedin.text-dark.mx-1
-            a(href='#')
-              i.bi.bi-instagram.text-dark.mx-1
-            a(href='#')
-              i.bi.bi-telephone.text-dark.mx-1
-            p
-      .col-md-6.col-lg-3
-        .card.bg-light
-          .card-body.text-center
-            img.square(src='https://randomuser.me/api/portraits/men/25.jpg' mb-3='' alt='')
-            h4.card-title.mb-3 Paul Mason
-            p.card-text
-              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia,
-              | excepturi
-              | eveniet esse quod explicabo magni!
-            a(href='#')
-              i.bi.bi-twitter.text-dark.mx-1
-            a(href='#')
-              i.bi.bi-facebook.text-dark.mx-1
-            a(href='#')
-              i.bi.bi-linkedin.text-dark.mx-1
-            a(href='#')
-              i.bi.bi-instagram.text-dark.mx-1
-            a(href='#')
-              i.bi.bi-telephone.text-dark.mx-1
-            p
-      .col-md-6.col-lg-3
-        .card.bg-light
-          .card-body.text-center
-            img.square(src='https://randomuser.me/api/portraits/men/28.jpg' mb-3='' alt='')
-            h4.card-title.mb-3 Doug Soko
-            p.card-text
-              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia,
-              | excepturi
-              | eveniet esse quod explicabo magni!
-            a(href='#')
-              i.bi.bi-twitter.text-dark.mx-1
-            a(href='#')
-              i.bi.bi-facebook.text-dark.mx-1
-            a(href='#')
-              i.bi.bi-linkedin.text-dark.mx-1
-            a(href='#')
-              i.bi.bi-instagram.text-dark.mx-1
-            a(href='#')
-              i.bi.bi-telephone.text-dark.mx-1
-            p
-      .col-md-6.col-lg-3
-        .card.bg-light
-          .card-body.text-center
-            img.square(src='https://randomuser.me/api/portraits/women/27.jpg' mb-3='' alt='')
-            h4.card-title.mb-3 Sandra Jones
-            p.card-text
-              | Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia,
-              | excepturi
-              | eveniet esse quod explicabo magni!
-            a(href='#')
-              i.bi.bi-twitter.text-dark.mx-1
-            a(href='#')
-              i.bi.bi-facebook.text-dark.mx-1
-            a(href='#')
-              i.bi.bi-linkedin.text-dark.mx-1
-            a(href='#')
-              i.bi.bi-instagram.text-dark.mx-1
-            a(href='#')
-              i.bi.bi-telephone.text-dark.mx-1
-            p
-// *** Contact Us ***
-secion#contactus.bg-info
-  .container
-    .row.g-4
-      .col-md
-        h2.text-center.mb-4 Contact Us
-        ul.list-group.list-group-flush.lead
-          li.list-group-item
-            span.fw-bold Main Location:
-            |                             321 Centre Street SW Calgary AB
-          li.list-group-item
-            span.fw-bold Website:
-            |                             www.travelexperts_ca.com
-          li.list-group-item
-            span.fw-bold Main:
-            |                             (403)-111-2233
-    form(method='POST' action='/contactus/contactThem')
-        .form-floating.m-3      
-          input#fullname.form-control(type='text' placeholder='Please enter your full name' name='fullname' 
-          value=postdata && postdata.fullname)
-          label.form-label(for='fullname') Full Name
-        .form-floating.m-3 
-          input#email.form-control(type='text' placeholder='Please enter your email' name='email' 
-          value=postdata && postdata.email)
-          label.form-label(for='email') Email
-        .form-floating.m-3
-          input#phone.form-control(type='text' placeholder='Please enter your telephone' name='phone' 
-          value=postdata && postdata.phone)
-          label.form-label(for='phone') Phone
-        .form-floating.m-3
-          textarea#comments.form-control(placeholder='Leave a comment here' name='comments')= postdata && postdata.comments
-          label(for='comments') Your Comments
-        .col-12
-            button.btn.btn-outline-primary(type='submit') Send
-            // <button class="btn btn-outline-primary" type="submit">Register</button>
-            button.btn.btn-outline-secondary(type='reset') Clear
-            <a href="/" class="btn btn-outline-danger" role="button">Back to Top</a>
-
-        .container
-          if errors    
-            each error in errors
-                p.alert.alert-danger= error
-
-// Footer
-footer.p-5.bg-info.text-dark.text-center.position-relative
-
-  .container
-    p.lead Copyright &copy; 2021 Travel Experts - SAIT
-    a.position-absolute.bottom-0.end-0.p-5(href='#')
-      i.bi.bi-arrow-up-circle.h1
-
-script(src='http://code.jquery.com/jquery-1.11.0.min.js')
-script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM' crossorigin='anonymous')
+block content
+  
+  // Picture Carousel
+  section#carousel.col-lg-12.col-md-1.bg-info.mt-0
+    #TECarousel.carousel.slide.carousel-fade.bg-info(data-bs-ride='carousel')
+      .carousel-indicators
+        button.active(type='button' data-bs-target='#TECarousel' data-bs-slide-to='0' aria-current='true' aria-label='Slide 1')
+        button(type='button' data-bs-target='#TECarousel' data-bs-slide-to='1' aria-label='Slide 2')
+        button(type='button' data-bs-target='#TECarousel' data-bs-slide-to='2' aria-label='Slide 3')
+        button(type='button' data-bs-target='#TECarousel' data-bs-slide-to='3' aria-label='Slide 4')
+        button(type='button' data-bs-target='#TECarousel' data-bs-slide-to='4' aria-label='Slide 5')
+        button(type='button' data-bs-target='#TECarousel' data-bs-slide-to='5' aria-label='Slide 6')
+      .carousel-inner
+        .carousel-item.bg-info.active(data-interval='50')
+          .container-fluid
+            img.d-block.w-100(src='images/andorra.jpg' alt='...')
+            .carousel-caption.d-none.d-md-block
+              h5 The intriguing Adriatic!
+              p
+                | Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse, quo qui ratione id dolor
+                | error.
+        .carousel-item.bg-info(data-interval='50')
+          .container-fluid
+            img.d-block.w-100(src='images/bora-bora.jpg' alt='...')
+            .carousel-caption.d-none.d-md-block
+              h5 Southeast Asia
+              p
+                | Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo non maxime quas
+                | voluptas iusto autem ab neque deserunt fuga nesciunt! Pariatur cum omnis veniam,
+                | voluptatem quod repellendus tenetur vel rem?
+        .carousel-item.bg-info(data-interval='50')
+          .container-fluid
+            img.d-block.w-100(src='images/corinth.jpg' alt='...')
+            .carousel-caption.d-none.d-md-block
+              h5 Visit Turkey
+              p
+                | Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione eum sequi unde.
+                | Est officiis error dolorem beatae aspernatur nobis aut deserunt sequi inventore,
+                | voluptatibus eligendi.
+        .carousel-item.bg-info(data-interval='50')
+          .container-fluid
+            img.d-block.w-100(src='images/ireland.jpg' alt='...')
+            .carousel-caption.d-none.d-md-block
+              h5 Visit Ireland
+              p
+                | Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                | Eveniet harum totam reiciendis minus facere ex laudantium modi. Maxime, quam alias..
+        .carousel-item.bg-info(data-interval='50')
+          .container-fluid
+            img.d-block.w-100(src='images/newyork.jpg' alt='...')
+            .carousel-caption.d-none.d-md-block
+              h5 New York, New York 
+              p
+                | Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                | Eveniet harum totam reiciendis minus facere ex laudantium modi. Maxime, quam alias..
+        .carousel-item.bg-info(data-interval='50')
+          .container-fluid
+            img.d-block.w-100(src='images/colorado10.jpg' alt='...')
+            .carousel-caption.d-none.d-md-block
+              h5 Climb to the top of the world ...
+              p
+                | Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                | Eveniet harum totam reiciendis minus facere ex laudantium modi. Maxime, quam alias..
+      button.carousel-control-prev(type='button' data-bs-target='#TECarousel' data-bs-slide='prev')
+        span.carousel-control-prev-icon(aria-hidden='true')
+        span.visually-hidden Previous
+      button.carousel-control-next(type='button' data-bs-target='#TECarousel' data-bs-slide='next')
+        span.carousel-control-next-icon(aria-hidden='true')
+        span.visually-hidden Next
+  // *** Agents ****
+  section#agents.p-5.bg-info
+    .container
+      h2.text-center.text-white Our Agents
+      p.lead.text-center.text.white.mb-5
+        | Our Senior Travel Agents are ready to help you reach
+        br
+        |                 your next dream destination. Make your appointment today!
+      .row.g-4
+        .col-md-6.col-lg-3
+          .card.bg-light
+            .card-body.text-center
+              img.square(src='https://randomuser.me/api/portraits/women/25.jpg' mb-3='' alt='')
+              h4.card-title.mb-3.mr-2 Catherine Hughes
+              p.card-text
+                | Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia,
+                | excepturi
+                | eveniet esse quod explicabo magni!
+              a(href='#')
+                i.bi.bi-twitter.text-dark.mx-1
+              a(href='#')
+                i.bi.bi-facebook.text-dark.mx-1
+              a(href='#')
+                i.bi.bi-linkedin.text-dark.mx-1
+              a(href='#')
+                i.bi.bi-instagram.text-dark.mx-1
+              a(href='#')
+                i.bi.bi-telephone.text-dark.mx-1
+              p
+        .col-md-6.col-lg-3
+          .card.bg-light
+            .card-body.text-center
+              img.square(src='https://randomuser.me/api/portraits/men/25.jpg' mb-3='' alt='')
+              h4.card-title.mb-3 Paul Mason
+              p.card-text
+                | Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia,
+                | excepturi
+                | eveniet esse quod explicabo magni!
+              a(href='#')
+                i.bi.bi-twitter.text-dark.mx-1
+              a(href='#')
+                i.bi.bi-facebook.text-dark.mx-1
+              a(href='#')
+                i.bi.bi-linkedin.text-dark.mx-1
+              a(href='#')
+                i.bi.bi-instagram.text-dark.mx-1
+              a(href='#')
+                i.bi.bi-telephone.text-dark.mx-1
+              p
+        .col-md-6.col-lg-3
+          .card.bg-light
+            .card-body.text-center
+              img.square(src='https://randomuser.me/api/portraits/men/28.jpg' mb-3='' alt='')
+              h4.card-title.mb-3 Doug Soko
+              p.card-text
+                | Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia,
+                | excepturi
+                | eveniet esse quod explicabo magni!
+              a(href='#')
+                i.bi.bi-twitter.text-dark.mx-1
+              a(href='#')
+                i.bi.bi-facebook.text-dark.mx-1
+              a(href='#')
+                i.bi.bi-linkedin.text-dark.mx-1
+              a(href='#')
+                i.bi.bi-instagram.text-dark.mx-1
+              a(href='#')
+                i.bi.bi-telephone.text-dark.mx-1
+              p
+        .col-md-6.col-lg-3
+          .card.bg-light
+            .card-body.text-center
+              img.square(src='https://randomuser.me/api/portraits/women/27.jpg' mb-3='' alt='')
+              h4.card-title.mb-3 Sandra Jones
+              p.card-text
+                | Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia,
+                | excepturi
+                | eveniet esse quod explicabo magni!
+              a(href='#')
+                i.bi.bi-twitter.text-dark.mx-1
+              a(href='#')
+                i.bi.bi-facebook.text-dark.mx-1
+              a(href='#')
+                i.bi.bi-linkedin.text-dark.mx-1
+              a(href='#')
+                i.bi.bi-instagram.text-dark.mx-1
+              a(href='#')
+                i.bi.bi-telephone.text-dark.mx-1

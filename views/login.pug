@@ -2,7 +2,6 @@ extends layout
 
 block content
   h1= title
-  h5.text-left.text-black Login to your account ...
   
   // Login Form
   form(action='/login-user' method="POST")
@@ -16,9 +15,3 @@ block content
     .col-12
       button.btn.btn-outline-primary(type='submit') Login
       <a href="/" class="btn btn-outline-danger" role="button">Close</a>
-
-  
-    if errors
-      ul
-        each error in errors
-          li.alert.alert-danger.m3= error

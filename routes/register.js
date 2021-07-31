@@ -43,7 +43,6 @@ router.post('/', function (req, res, next) {
         });
     });
 });
-// res.redirect("thankyou");
 
 
 function processErrors(errs, req, res) {
@@ -52,6 +51,7 @@ function processErrors(errs, req, res) {
     const errorKeys = Object.keys(errs.errors);
     errorKeys.forEach((key) => errorArray.push(errs.errors[key].message));
     return res.render("register", {
+        postdata: req.body,
         ...pageRegister,
         errors: errorArray,
         ...req.body,
