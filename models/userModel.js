@@ -2,38 +2,45 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require("mongoose-unique-validator");
 
-const customerSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: "Username is required",
+        trim: true,
+        unique: "That user name is taken, please a differnt user name",
+        lowercase: true,
+    },
     firstname: {
         type: String,
-        required: "Please enter your last name.",
-        trim: true
+        required: "Please enter your first name.",
+        trim: true,
     },
     lastname: {
         type: String,
         required: "Please enter your last name.",
-        trim: true
+        trim: true,
     },
     email: {
         type: String,
+        required: 'Please enter your email address',
         trim: true,
         validate: {
             validator: function (v) {
                 return /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/.test(v);
             },
-            message: props => `${props.value} is not a valid email address`
+            message: props => `${props.value} is not a valid email address`,
         },
-        required: 'Please enter your email address'
     },
     phone: {
         type: String,
+        required: 'Please enter your phone number',
         trim: true,
         validate: {
             validator: function (v) {
                 return /^[+]?(1\\-|1\s|1|\d{3}\-|\d{3}\s|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/g.test(v);
             },
-            message: props => `${props.value} is not a valid phone number`
+            message: props => `${props.value} is not a valid phone number`,
         },
-        required: 'Please enter your phone number'
     },
     password: {
         type: String,
@@ -55,5 +62,5 @@ const customerSchema = new mongoose.Schema({
     // more fields defined below
 });
 
-customerSchema.plugin(uniqueValidator);
-module.exports.Customer = mongoose.model('Customer', customerSchema);
+userSchema.plugin(uniqueValidator);
+module.exports.User = mongoose.model('User', userSchema);

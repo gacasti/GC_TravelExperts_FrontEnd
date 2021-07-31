@@ -30,6 +30,15 @@ const contactUsSchema = new mongoose.Schema({
         required: 'Please enter your phone number'
     },
     comments: {
+        type: String,
+        required: "Please write us a comment.",
+        trim: true,
+        validate: {
+            validator: function (v) {
+                return v.length > 5;
+            },
+            message: (props) => `${props.value} your comments is too short.`,
+        },
 
     },
 });

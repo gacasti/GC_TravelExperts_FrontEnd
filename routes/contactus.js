@@ -21,7 +21,7 @@ router.post('/contactThem', function (req, res, next) {
             const errorArray = [];
             const errorKeys = Object.keys(err.errors);
             errorKeys.forEach((key) => errorArray.push(err.errors[key].message));
-            return res.render("/", {
+            return res.render("index", {
                 postdata: req.body,
                 errors: errorArray,
             });

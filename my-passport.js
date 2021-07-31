@@ -17,7 +17,7 @@ module.exports.init = function (app) {
     );
 
     // Use a User Model to store and retrieve the user information
-    const { User } = require("./models/customerModel");
+    const { User } = require("./models/userModel");
 
     passport.use(
         // Do the login check
@@ -56,9 +56,11 @@ module.exports.init = function (app) {
     app.use(passport.session());
     // Login Endpoint, recieves the user login from a login form
     app.post(
-        "/login",
-        passport.authenticate("local", { failureRedirect: "/" }),
+        "/login-user",
+        passport.authenticate("local", { failureRedirect: "/login" }),
         function (req, res) {
+            console.log("Authenticated");
+            res.locals.loggedInAs = `Logged-in as ${req.user?.username}`;
             const headermessage = `Welcome ${req.user?.username}`;
             res.redirect("/?headermessage=" + headermessage);
         }

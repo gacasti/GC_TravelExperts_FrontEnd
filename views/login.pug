@@ -5,18 +5,20 @@ block content
   h5.text-left.text-black Login to your account ...
   
   // Login Form
-  form(name='loginForm')
+  form(action='/login-user' method="POST")
     .form-floating.m-2
-      input#lemail.form-control(type='text' placeholder='Title' name='lemail')
-      label.form-label(for='lemail') Email
+      input#username.form-control(type='text' placeholder='User Name' name='username' 
+      value=postdata && postdata.username)
+      label.form-label(for='username') User Name
     .form-floating.m-2
-      input#lpassword.form-control(type='password' placeholder='Title' name='lpassword')
-      label.form-label(for='lpassword') Password
+      input#password.form-control(type='password' placeholder='Title' name='password')
+      label.form-label(for='password') Password
     .col-12
       button.btn.btn-outline-primary(type='submit') Login
       <a href="/" class="btn btn-outline-danger" role="button">Close</a>
+
   
-  if errors
-    ul
-      each error in errors
-        li.alert.alert-danger.m3= error
+    if errors
+      ul
+        each error in errors
+          li.alert.alert-danger.m3= error

@@ -6,6 +6,11 @@ block content
     // Registration Form
     form(method='POST' action='/register')
         .form-floating.m-2
+            input#username.form-control(type='text' placeholder='User Name' name='username' 
+            value=postdata && postdata.username)
+            label.form-label(for='username') User Name
+
+        .form-floating.m-2
             input#firstname.form-control(type='text' placeholder='First Name' name='firstname' 
             value=postdata && postdata.firstname)
             label.form-label(for='firstname') First Name
@@ -35,8 +40,3 @@ block content
         // <button class="btn btn-outline-primary" type="submit">Register</button>
         button.btn.btn-outline-secondary(type='reset') Clear
         <a href="/" class="btn btn-outline-danger" role="button">Close</a>
-
-    .container
-      if errors    
-        each error in errors
-            p.alert.alert-danger= error
