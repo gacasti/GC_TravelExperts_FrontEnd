@@ -37,7 +37,7 @@ const contactUsSchema = new mongoose.Schema({
             validator: function (v) {
                 return v.length > 5;
             },
-            message: (props) => `${props.value} your comments is too short.`,
+            message: (props) => `Your comments are too short.  Tell us more!`,
         },
 
     },
