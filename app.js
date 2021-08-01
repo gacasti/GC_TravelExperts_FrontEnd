@@ -39,7 +39,6 @@ app.use(
   })
 );
 
-
 // -------------------------------------------------------------
 // Configure the DB connection using Mongoose
 var mongoose = require("mongoose");
@@ -59,10 +58,6 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 db.once("open", function () {
   console.log(`we are connected to the ${db.name} database ...`);
 });
-
-
-
-
 
 // -------------------------------------------------------------
 // For Passport.js

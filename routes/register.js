@@ -44,7 +44,6 @@ router.post('/', function (req, res, next) {
     });
 });
 
-
 function processErrors(errs, req, res) {
     // If there are errors from the Model schema
     const errorArray = [];
